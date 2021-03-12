@@ -4,26 +4,6 @@
 
 #include "include/complex_number.h"
 
-TEST(Vlasov_Maksim_ComplexNumberTest, can_create_zero_by_default) {
-    double re = 0.0;
-    double im = 0.0;
-
-    ComplexNumber c;
-
-    EXPECT_EQ(re, c.getRe());
-    EXPECT_EQ(im, c.getIm());
-}
-
-TEST(Vlasov_Maksim_ComplexNumberTest, can_be_initialized) {
-    double re = 1.0;
-    double im = 2.0;
-
-    ComplexNumber c(re, im);
-
-    EXPECT_EQ(re, c.getRe());
-    EXPECT_EQ(im, c.getIm());
-}
-
 TEST(Vlasov_Maksim_ComplexNumberTest, can_be_copied) {
     double re = 1.0;
     double im = 2.0;
