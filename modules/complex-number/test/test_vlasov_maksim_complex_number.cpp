@@ -11,8 +11,8 @@ TEST(Vlasov_Maksim_ComplexNumberTest, can_be_copied) {
     ComplexNumber c(re, im);
     ComplexNumber c_copy(c);
 
-    EXPECT_EQ(c.getRe(), c_copy.getRe());
-    EXPECT_EQ(c.getIm(), c_copy.getIm());
+    EXPECT_EQ(re, c_copy.getRe());
+    EXPECT_EQ(im, c_copy.getIm());
 }
 
 TEST(Vlasov_Maksim_ComplexNumberTest, can_be_copy_assigned) {
@@ -22,8 +22,8 @@ TEST(Vlasov_Maksim_ComplexNumberTest, can_be_copy_assigned) {
     ComplexNumber c(re, im);
     ComplexNumber c_copy = c;
 
-    EXPECT_EQ(c.getRe(), c_copy.getRe());
-    EXPECT_EQ(c.getIm(), c_copy.getIm());
+    EXPECT_EQ(re, c_copy.getRe());
+    EXPECT_EQ(im, c_copy.getIm());
 }
 
 TEST(Vlasov_Maksim_ComplexNumberTest, can_set_real_part) {
