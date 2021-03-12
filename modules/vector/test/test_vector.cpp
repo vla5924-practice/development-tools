@@ -1,7 +1,8 @@
 // Copyright 2021 Vlasov Maksim
 
-#include <cmath>
 #include <gtest/gtest.h>
+
+#include <cmath>
 
 #include "include/vector.h"
 
@@ -25,7 +26,7 @@ TEST(VectorTest, can_create_with_coords_and_get) {
     double x = 1;
     double y = 2;
     double z = 3;
-    
+
     Vector v{x, y, z};
 
     ASSERT_EQ(x, v.x());
@@ -37,7 +38,7 @@ TEST(VectorTest, can_be_copied) {
     double x = 1;
     double y = 2;
     double z = 3;
-    
+
     Vector v{x, y, z};
     Vector v_copy{v};
 
@@ -50,7 +51,7 @@ TEST(VectorTest, can_be_moved) {
     double x = 1;
     double y = 2;
     double z = 3;
-    
+
     Vector v{x, y, z};
     Vector v_moved{std::move(v)};
 
@@ -63,7 +64,7 @@ TEST(VectorTest, can_be_copy_assigned) {
     double x = 1;
     double y = 2;
     double z = 3;
-    
+
     Vector v{x, y, z};
     Vector v_copy = v;
 
@@ -76,7 +77,7 @@ TEST(VectorTest, can_be_move_assigned) {
     double x = 1;
     double y = 2;
     double z = 3;
-    
+
     Vector v{x, y, z};
     Vector v_moved = std::move(v);
 
@@ -88,7 +89,7 @@ TEST(VectorTest, can_be_move_assigned) {
 TEST(VectorTest, can_set_x) {
     double x = 1;
     double x_ = 2;
-    
+
     Vector v{x, 0, 0};
     v.setX(x_);
 
@@ -98,7 +99,7 @@ TEST(VectorTest, can_set_x) {
 TEST(VectorTest, can_set_y) {
     double y = 1;
     double y_ = 2;
-    
+
     Vector v{0, y, 0};
     v.setY(y_);
 
@@ -108,7 +109,7 @@ TEST(VectorTest, can_set_y) {
 TEST(VectorTest, can_set_z) {
     double z = 1;
     double z_ = 2;
-    
+
     Vector v{0, 0, z};
     v.setZ(z_);
 
@@ -120,7 +121,7 @@ TEST(VectorTest, can_calculate_norm) {
     double y = -1;
     double z = 2;
     double norm = std::sqrt(6);
-    
+
     Vector v{x, y, z};
 
     ASSERT_EQ(norm, v.norm());
@@ -128,7 +129,7 @@ TEST(VectorTest, can_calculate_norm) {
 
 TEST(VectorTest, can_calculate_dot) {
     double dot = 3 - 2 - 4;
-    
+
     Vector v1{1, 2, -1};
     Vector v2{3, -1, 4};
 
