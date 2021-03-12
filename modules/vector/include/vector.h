@@ -7,7 +7,7 @@ class Vector {
     double m_y;
     double m_z;
 
-  public:
+ public:
     Vector();
     Vector(double x, double y, double z);
     Vector(const Vector &) = default;
