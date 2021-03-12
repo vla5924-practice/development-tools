@@ -1,13 +1,13 @@
 // Copyright 2021 Vlasov Maksim
-
-#pragma once
+#ifndef MODULES_VECTOR_INCLUDE_VECTOR_H_
+#define MODULES_VECTOR_INCLUDE_VECTOR_H_
 
 class Vector {
     double m_x;
     double m_y;
     double m_z;
 
-public:
+  public:
     Vector();
     Vector(double x, double y, double z);
     Vector(const Vector &) = default;
@@ -30,3 +30,5 @@ public:
     Vector operator*(const Vector &other) const;
     Vector normalize() const;
 };
+
+#endif  // MODULES_VECTOR_INCLUDE_VECTOR_H_
