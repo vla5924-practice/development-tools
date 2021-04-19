@@ -10,12 +10,15 @@ class Vector {
  public:
     Vector();
     Vector(double x, double y, double z);
-    Vector(const Vector &) = default;
-    Vector(Vector &&) = default;
+    Vector(const Vector&) = default;
+    Vector(Vector&&) = default;
     ~Vector() = default;
 
-    Vector &operator=(const Vector &) = default;
-    Vector &operator=(Vector &&) = default;
+    Vector& operator=(const Vector&) = default;
+    Vector& operator=(Vector&&) = default;
+
+    bool operator==(const Vector& other) const;
+    bool operator!=(const Vector& other) const;
 
     double x() const;
     double y() const;
@@ -26,8 +29,8 @@ class Vector {
     void setZ(double z);
 
     double norm() const;
-    double dot(const Vector &other) const;
-    Vector operator*(const Vector &other) const;
+    double dot(const Vector& other) const;
+    Vector operator*(const Vector& other) const;
     Vector normalize() const;
 };
 

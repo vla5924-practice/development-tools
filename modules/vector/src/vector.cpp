@@ -6,12 +6,18 @@
 #include <limits>
 #include <stdexcept>
 
-Vector::Vector()
-    : m_x(0), m_y(0), m_z(0) {
+Vector::Vector() : m_x(0), m_y(0), m_z(0) {
 }
 
-Vector::Vector(double x, double y, double z)
-    : m_x(x), m_y(y), m_z(z) {
+Vector::Vector(double x, double y, double z) : m_x(x), m_y(y), m_z(z) {
+}
+
+bool Vector::operator==(const Vector& other) const {
+    return m_x == other.m_x && m_y == other.m_y && m_z == other.m_z;
+}
+
+bool Vector::operator!=(const Vector& other) const {
+    return !(*this == other);
 }
 
 double Vector::x() const {
@@ -42,11 +48,11 @@ double Vector::norm() const {
     return std::sqrt(m_x * m_x + m_y * m_y + m_z * m_z);
 }
 
-double Vector::dot(const Vector &other) const {
+double Vector::dot(const Vector& other) const {
     return m_x * other.m_x + m_y * other.m_y + m_z * other.m_z;
 }
 
-Vector Vector::operator*(const Vector &other) const {
+Vector Vector::operator*(const Vector& other) const {
     double x = m_y * other.m_z - m_z * other.m_y;
     double y = m_z * other.m_x - m_x * other.m_z;
     double z = m_x * other.m_y - m_y * other.m_x;

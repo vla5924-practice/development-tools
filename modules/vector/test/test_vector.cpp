@@ -86,6 +86,34 @@ TEST(VectorTest, can_be_move_assigned) {
     ASSERT_EQ(z, v_moved.z());
 }
 
+TEST(VectorTest, can_check_equality_of_equal_vectors) {
+    Vector v1{1, 2, 3};
+    Vector v2{1, 2, 3};
+
+    ASSERT_TRUE(v1 == v2);
+}
+
+TEST(VectorTest, can_check_equality_of_unequal_vectors) {
+    Vector v1{1, 2, 3};
+    Vector v2{3, 2, 1};
+
+    ASSERT_FALSE(v1 == v2);
+}
+
+TEST(VectorTest, can_check_unequality_of_equal_vectors) {
+    Vector v1{1, 2, 3};
+    Vector v2{1, 2, 3};
+
+    ASSERT_FALSE(v1 != v2);
+}
+
+TEST(VectorTest, can_check_unequality_of_unequal_vectors) {
+    Vector v1{1, 2, 3};
+    Vector v2{3, 2, 1};
+
+    ASSERT_TRUE(v1 != v2);
+}
+
 TEST(VectorTest, can_set_x) {
     double x = 1;
     double x_ = 2;
@@ -134,4 +162,28 @@ TEST(VectorTest, can_calculate_dot) {
     Vector v2{3, -1, 4};
 
     ASSERT_EQ(dot, v1.dot(v2));
+}
+
+TEST(VectorTest, can_multiply_vectors) {
+    Vector ml{7, -7, -7};
+
+    Vector v1{1, 2, -1};
+    Vector v2{3, -1, 4};
+
+    ASSERT_EQ(ml, v1 * v2);
+}
+
+TEST(VectorTest, can_normalize_nonzero_vector) {
+    double norm = std::sqrt(1 + 9 + 4);
+
+    Vector vec{1, 3, -2};
+    Vector normalized{1 / norm, 3 / norm, -2 / norm};
+
+    ASSERT_EQ(normalized, vec.normalize());
+}
+
+TEST(VectorTest, cannot_normalize_zero_vector) {
+    Vector vec{0, 0, 0};
+
+    ASSERT_ANY_THROW(vec.normalize());
 }
