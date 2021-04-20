@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 
 #include <cmath>
+#include <limits>
 
 #include "include/vector.h"
 
@@ -174,12 +175,21 @@ TEST(VectorTest, can_multiply_vectors) {
 }
 
 TEST(VectorTest, can_normalize_nonzero_vector) {
-    double norm = std::sqrt(1 + 9 + 4);
+    double x = 1;
+    double y = 3;
+    double z = -2;
+    double norm = std::sqrt(x * x + y * y + z * z);
 
-    Vector vec{1, 3, -2};
-    Vector normalized{1 / norm, 3 / norm, -2 / norm};
+    Vector vec{x, y, z};
+    Vector normalized{x / norm, y / norm, z / norm};
 
     ASSERT_EQ(normalized, vec.normalize());
+}
+
+TEST(VectorTest, can_really_normalize_vector) {
+    Vector vec{1, 3, -2};
+
+    ASSERT_NEAR(1, vec.normalize().norm(), std::numeric_limits<double>::epsilon() * 10);
 }
 
 TEST(VectorTest, cannot_normalize_zero_vector) {
