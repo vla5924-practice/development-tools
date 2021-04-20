@@ -149,7 +149,7 @@ TEST(VectorTest, can_calculate_norm) {
     double x = 1;
     double y = -1;
     double z = 2;
-    double norm = std::sqrt(6);
+    double norm = std::sqrt(x * x + y * y + z * z);
 
     Vector v{x, y, z};
 
@@ -189,7 +189,8 @@ TEST(VectorTest, can_normalize_nonzero_vector) {
 TEST(VectorTest, can_really_normalize_vector) {
     Vector vec{1, 3, -2};
 
-    ASSERT_NEAR(1, vec.normalize().norm(), std::numeric_limits<double>::epsilon() * 10);
+    ASSERT_NEAR(1, vec.normalize().norm(),
+                std::numeric_limits<double>::epsilon() * 10);
 }
 
 TEST(VectorTest, cannot_normalize_zero_vector) {
