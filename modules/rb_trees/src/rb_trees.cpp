@@ -5,8 +5,8 @@
 
 #include "../include/rb_trees.h"
 
-Node::Node(int _value, bool _color, Node *_left, Node *_right,
-    Node *_parent) : value(_value), color(_color), left(_left),
+Node::Node(int _value, bool _color, Node* _left, Node* _right,
+    Node* _parent) : value(_value), color(_color), left(_left),
     right(_right), parent(_parent) {}
 
 Node::Node(const Node& node) : value(node.value), color(node.color),
@@ -43,7 +43,7 @@ RBTree::RBTree() {
     counter = 0;
 }
 
-RBTree::RBTree(Node *node) {
+RBTree::RBTree(Node* node) {
     NIL = new Node();
     root = node;
     current = NIL;
@@ -63,7 +63,7 @@ RBTree::RBTree(const std::vector<int>& vec) {
     counter = 0;
 
     for (int i : vec) {
-        Node *node = new Node(i);
+        Node* node = new Node(i);
         nodes_ptr.emplace_back(node);
         insertNode(node);
     }
@@ -94,12 +94,12 @@ bool RBTree::findNode(const int value) {
     return false;
 }
 
-void RBTree::insertNode(Node *node) {
+void RBTree::insertNode(Node* node) {
     if (findNode(node->value))
         throw "Node with this value is already in the tree";
 
-    Node *par = NIL;
-    Node *node_place = root;
+    Node* par = NIL;
+    Node* node_place = root;
 
     while (node_place != NIL) {
         par = node_place;
@@ -131,9 +131,9 @@ void RBTree::removeNode(const int value) {
     if (!findNode(value))
         throw "There is no node with this value in the tree";
 
-    Node *del_node = current;
-    Node *replace_node = current;
-    Node *x;
+    Node* del_node = current;
+    Node* replace_node = current;
+    Node* x;
 
     bool y_original_color = replace_node->color;
 
@@ -176,10 +176,10 @@ void RBTree::removingNodes(const std::vector<int>& vec, int i) {
     }
 }
 
-void RBTree::shuffle_for_insert(Node *node) {
+void RBTree::shuffle_for_insert(Node* node) {
     while (node->parent->color == RED) {
         if (node->parent == node->parent->parent->left) {
-            Node *uncle = node->parent->parent->right;
+            Node* uncle = node->parent->parent->right;
 
             if (uncle->color == RED) {
                 node->parent->color = BLACK;
@@ -196,7 +196,7 @@ void RBTree::shuffle_for_insert(Node *node) {
                 right_rotate(node->parent->parent);
             }
         } else {
-            Node *uncle = node->parent->parent->left;
+            Node* uncle = node->parent->parent->left;
 
             if (uncle->color == RED) {
                 node->parent->color = BLACK;
@@ -218,8 +218,8 @@ void RBTree::shuffle_for_insert(Node *node) {
     root->color = BLACK;
 }
 
-void RBTree::left_rotate(Node *x) {
-    Node *y = x->right;
+void RBTree::left_rotate(Node* x) {
+    Node* y = x->right;
     x->right = y->left;
 
     if (y->left != NIL)
@@ -238,8 +238,8 @@ void RBTree::left_rotate(Node *x) {
     x->parent = y;
 }
 
-void RBTree::right_rotate(Node *x) {
-    Node *y = x->left;
+void RBTree::right_rotate(Node* x) {
+    Node* y = x->left;
     x->left = y->right;
 
     if (y->right != NIL)
@@ -258,7 +258,7 @@ void RBTree::right_rotate(Node *x) {
     x->parent = y;
 }
 
-void RBTree::transplant(Node *x, Node *y) {
+void RBTree::transplant(Node* x, Node* y) {
     if (x->parent == NIL)
         root = y;
     else if (x == x->parent->left)
@@ -269,10 +269,10 @@ void RBTree::transplant(Node *x, Node *y) {
     y->parent = x->parent;
 }
 
-void RBTree::shuffle_for_remove(Node *node) {
+void RBTree::shuffle_for_remove(Node* node) {
     while (node != root && node->color == BLACK) {
         if (node == node->parent->left) {
-            Node *tmp = node->parent->right;
+            Node* tmp = node->parent->right;
 
             if (tmp->color == RED) {
                 tmp->color = BLACK;
@@ -298,7 +298,7 @@ void RBTree::shuffle_for_remove(Node *node) {
                 node = root;
             }
         } else {
-            Node *tmp = node->parent->left;
+            Node* tmp = node->parent->left;
 
             if (tmp->color == RED) {
                 tmp->color = BLACK;
@@ -329,7 +329,7 @@ void RBTree::shuffle_for_remove(Node *node) {
     node->color = BLACK;
 }
 
-Node* RBTree::get_minimum(Node * const node) {
+Node* RBTree::get_minimum(Node* const node) {
     current = node;
 
     while (current->left != NIL)
